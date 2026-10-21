@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F4F5F2">
+  <meta name="description" content="Restful Booker: 7 bugs de API, 16 variações reproduzidas no Postman. Evidências, requisitos e impactos em apresentação interativa.">
+  <title>Restful Booker — Bugs da API | Bug Hunters</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="presentation" id="presentation" aria-label="Apresentação Restful Booker">
+    <header class="masthead"><a class="brand" href="#slide-1">Restful <span>Booker</span></a><span class="team">Bug Hunters</span></header>
+    <div id="slides" class="slides"></div>
+    <footer class="controls">
+      <div class="direction"><button id="previous" class="icon-button" aria-label="Slide anterior"></button><button id="next" class="icon-button" aria-label="Próximo slide"></button></div>
+      <span id="counter" class="counter">01 / 36</span>
+      <div class="progress" role="progressbar" aria-label="Progresso da apresentação" aria-valuemin="1" aria-valuemax="36" aria-valuenow="1"><span id="progress-fill"></span></div>
+      <button id="open-index" class="text-button" aria-label="Abrir índice de slides"></button>
+      <button id="fullscreen" class="icon-button" aria-label="Ativar tela cheia"></button>
+    </footer>
+    <span class="sr-only" id="announcement" role="status" aria-live="polite"></span>
+    <noscript>Ative o JavaScript para navegar pelos slides. <a href="assets/relatorio-api.pdf">Abrir relatório em PDF</a>.</noscript>
+  </main>
+  <dialog id="index-dialog" aria-labelledby="index-title"><div class="dialog-heading"><div><h2 id="index-title">Escolha um slide.</h2><p>16 variações, organizadas por ocorrência.</p></div><button data-close="index-dialog" class="dialog-close" aria-label="Fechar índice">Fechar</button></div><label class="search-label" for="slide-search">Buscar por bug ou cenário</label><input id="slide-search" type="search" placeholder="Ex.: BUG-007 ou preço" autocomplete="off"><nav id="slide-index" aria-label="Índice da apresentação"></nav></dialog>
+  <dialog id="image-dialog" class="image-dialog" aria-labelledby="image-title"><div class="dialog-heading"><h2 id="image-title">Evidência</h2><div class="image-actions"><button id="zoom-image">Ampliar 150%</button><a id="original-image" target="_blank" rel="noopener">Print completo</a><button data-close="image-dialog" class="dialog-close" aria-label="Fechar evidência">Fechar</button></div></div><div id="image-scroll" class="image-scroll"><img id="large-image" alt=""></div></dialog>
+</body>
+</html>
