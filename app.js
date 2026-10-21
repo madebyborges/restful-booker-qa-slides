@@ -69,7 +69,7 @@
     $('slide-index').innerHTML=entries.length?entries.map(e=>`<div class="index-entry ${current===e.n||e.analysis&&current===e.n+1?'is-current':''}"><div><strong>${esc(e.label)}</strong><small>${esc(e.sub)}</small></div><div class="index-links"><button data-go="${e.n}">${e.analysis?'Print':'Abrir'}</button>${e.analysis?`<button data-go="${e.n+1}">Análise</button>`:''}</div></div>`).join(''):'<p class="empty-index">Nenhum cenário encontrado.</p>';
   }
   function openImage(i) {
-    const c=i==='blocked'?{id:'Controle',title:'GET /booking/4840 · 404',image:'assets/prints/impedimento.png',original:'assets/prints/impedimento.png'}:cases[Number(i)];
+    const c=i==='blocked'?{id:'Controle',title:'GET /booking/4840 · 404',image:'assets/prints/impedimento.png',original:'assets/originals/impedimento.png'}:cases[Number(i)];
     $('image-title').textContent=c.id+' · '+c.title;$('large-image').src=c.image;$('large-image').alt=c.id+' · '+c.title;
     $('original-image').href=c.original;$('image-scroll').classList.remove('is-zoomed');$('zoom-image').textContent='Ampliar 150%';$('zoom-image').setAttribute('aria-pressed','false');imageDialog.showModal();$('image-scroll').scrollTo(0,0);
   }
