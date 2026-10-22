@@ -12,6 +12,7 @@ São 36 slides: abertura, resumo de 7 ocorrências, evidência e análise de 16 
 - **F**: alternar tela cheia.
 - **Esc**: fechar índice ou imagem ampliada.
 - **Ampliar print**: abrir evidência, aplicar zoom e consultar o print completo.
+- Na abertura, a logo executa sua entrada e mantém os movimentos do personagem. Clique na logo para repetir; voltar ao primeiro slide também reinicia a entrada.
 - Em telas de toque, deslizar para os lados também navega.
 
 Links `#slide-1` até `#slide-36` abrem diretamente o slide desejado. A preferência do sistema para reduzir movimento desativa as animações.
@@ -37,6 +38,7 @@ GitHub Pages, branch `main`, pasta `/` (raiz). O arquivo `.nojekyll` preserva a 
 - `report.css`: identidade Bug Hunters e composição dos relatórios conforme a referência visual.
 - `app.js`: slides, navegação, índice, zoom e tela cheia.
 - `data.js`: dados das evidências e análises.
+- `cover-logo.js`: logo SVG com a animação de entrada da abertura, respeitando movimento reduzido.
 - `evidence-data.js`: transcrição dos corpos de requisição e resposta observados nos prints de 21/10/2026. Os painéis não executam chamadas à API; as respostas 200 exibem um trecho dos campos relevantes. O botão de cópia fornece o corpo completo transcrito, e **Ver print** abre a evidência correspondente.
 - `assets/prints`: recortes documentais utilizados nos slides.
 - `assets/originals`: capturas completas correspondentes.

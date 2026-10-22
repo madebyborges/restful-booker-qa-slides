@@ -15,7 +15,7 @@
     const n = slides.length + 1;
     slides.push({title, html:`<section class="slide ${className}" id="slide-${n}" aria-label="${n}. ${esc(title)}" aria-hidden="true" inert>${body}</section>`});
   }
-  add('Abertura', `<div class="cover-copy"><h1 data-reveal>Bugs da API<em>.</em></h1><h2 data-reveal style="--order:1">Evidências que explicam.</h2><p class="date" data-reveal style="--order:2">Reteste no Postman · ${esc(date)}</p><button class="start" data-go="1" data-reveal style="--order:3">Iniciar apresentação ${right}</button><p class="key-hint" data-reveal style="--order:4">Use as setas para navegar · F para tela cheia</p></div><aside class="metrics" data-reveal style="--order:2"><div class="metric"><strong>7</strong><span>bugs reproduzidos</span></div><div class="metric"><strong>16</strong><span>variações documentadas</span></div></aside>`, 'cover');
+  add('Abertura', `<div class="cover-copy"><h1 data-reveal>Bugs da API<em>.</em></h1><h2 data-reveal style="--order:1">Evidências que explicam.</h2><p class="date" data-reveal style="--order:2">Reteste no Postman · ${esc(date)}</p><button class="start" data-go="1" data-reveal style="--order:3">Iniciar apresentação ${right}</button><p class="key-hint" data-reveal style="--order:4">Use as setas para navegar · F para tela cheia</p></div><aside class="cover-brand"><button class="cover-logo-button" data-replay-logo aria-label="Repetir entrada da logo Bug Hunters" title="Clique para repetir a entrada">${window.BUG_HUNTERS_COVER_LOGO}</button><div class="cover-stats" data-reveal style="--order:5"><div><strong>7</strong><span>bugs reproduzidos</span></div><div><strong>16</strong><span>variações documentadas</span></div></div></aside>`, 'cover');
   add('Resumo dos bugs', `<h2 data-reveal>7 bugs. 16 variações.</h2><p class="lede" data-reveal style="--order:1">Criação de reservas · POST /booking · Avaliação frente aos critérios do case.</p><table class="summary-table" data-reveal style="--order:2"><thead><tr><th>Ocorrência</th><th>Falha observada</th><th>Variações</th><th>HTTP</th></tr></thead><tbody>${summary.map(s=>`<tr data-go="${2+cases.findIndex(c=>c.id===s.id)*2}" tabindex="0" role="button" aria-label="Abrir ${esc(s.id)}"><td>${esc(s.id)}</td><td>${esc(s.title)}</td><td>${s.count}</td><td>${esc(s.http)}</td></tr>`).join('')}</tbody></table><p class="overview-note" data-reveal style="--order:3">Selecione uma ocorrência para abrir a evidência. Cada print é seguido da análise do cenário.</p>`, 'overview');
   const brief = [
     'Campo obrigatório ausente causa erro interno genérico.',
@@ -63,6 +63,7 @@
     n = Math.max(0,Math.min(slides.length-1,n));
     if (n === current) return;
     current = n;
+    document.querySelector('.cover-logo').getAnimations({subtree:true}).forEach(a=>{if(n===0){a.currentTime=0;a.play();}else a.pause();});
     $('variation-label').textContent=n>=2&&n<=33?`Variação ${String(Math.floor((n-2)/2)+1).padStart(2,'0')} de 16`:'Apresentação de resultados';
     sections.forEach((s,i)=>{s.classList.toggle('is-active',i===n);s.classList.toggle('is-before',i<n);s.inert=i!==n;s.setAttribute('aria-hidden',String(i!==n));});
     $('counter').textContent = `${String(n+1).padStart(2,'0')} / ${slides.length}`;
@@ -90,6 +91,7 @@
     catch {$('announcement').textContent='Tela cheia indisponível neste navegador. Use F11 para ampliar a janela.';}
   }
   document.addEventListener('click',e=>{
+    if(e.target.closest('[data-replay-logo]')){document.querySelector('.cover-logo').getAnimations({subtree:true}).forEach(a=>{a.currentTime=0;a.play();});return;}
     const nav=e.target.closest('[data-go]');if(nav){if(indexDialog.open)indexDialog.close();go(Number(nav.dataset.go));return;}
     const image=e.target.closest('[data-image]');if(image){openImage(image.dataset.image);return;}
     const copy=e.target.closest('[data-copy]');if(copy){const c=cases[Number(copy.dataset.case)];const value=copy.dataset.copy==='request'?JSON.stringify(c.request,null,2):(typeof c.response==='string'?c.response:JSON.stringify(c.response,null,2));navigator.clipboard.writeText(value).then(()=>{$('announcement').textContent='JSON copiado.';copy.classList.add('is-copied');setTimeout(()=>copy.classList.remove('is-copied'),1200);}).catch(()=>{$('announcement').textContent='Não foi possível copiar. Selecione o conteúdo do painel.';});return;}
