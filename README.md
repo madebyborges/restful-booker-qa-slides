@@ -11,7 +11,9 @@ São 12 slides: logo animada, abertura, resumo, um slide por bug (7 ocorrências
 - **I**: índice com busca por cenário ou ocorrência.
 - **F**: alternar tela cheia.
 - **Esc**: fechar índice ou imagem ampliada.
-- **Ampliar print**: abrir evidência, aplicar zoom e consultar o print completo.
+- **Ver print**: abrir a captura correspondente, aplicar zoom e consultar o print completo.
+- **Ver variações**: consultar os cenários e selecionar qual requisição, resposta e análise aparecem no mesmo slide.
+- Os painéis escuros exibem o JSON colorido para facilitar a leitura durante a apresentação.
 - Na abertura, a logo executa sua entrada e mantém os movimentos do personagem. Clique na logo para repetir; voltar ao primeiro slide também reinicia a entrada.
 - Em telas de toque, deslizar para os lados também navega.
 
