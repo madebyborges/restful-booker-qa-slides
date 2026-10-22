@@ -34,8 +34,10 @@ GitHub Pages, branch `main`, pasta `/` (raiz). O arquivo `.nojekyll` preserva a 
 
 - `index.html`: estrutura e controles acessíveis.
 - `styles.css`: composição, escala 16:9, cores e animações.
+- `report.css`: identidade Bug Hunters e composição dos relatórios conforme a referência visual.
 - `app.js`: slides, navegação, índice, zoom e tela cheia.
 - `data.js`: dados das evidências e análises.
+- `evidence-data.js`: transcrição dos corpos de requisição e resposta observados nos prints de 21/10/2026. Os painéis não executam chamadas à API; as respostas 200 exibem um trecho dos campos relevantes. O botão de cópia fornece o corpo completo transcrito, e **Ver print** abre a evidência correspondente.
 - `assets/prints`: recortes documentais utilizados nos slides.
 - `assets/originals`: capturas completas correspondentes.
 - `assets/relatorio-api.pdf`: relatório da rodada.

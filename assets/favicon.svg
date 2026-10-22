@@ -1,1 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#59AA38"/><path d="M17 16h16c10 0 15 5 15 12 0 6-4 10-9 11l11 13H36L25 38v14H14V16zm8 9v6h8c3 0 4-1 4-3s-1-3-4-3z" fill="white"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="550 145 560 505" role="img" aria-labelledby="title desc">
+<title id="title">Bug Hunters — detetive animado</title><desc id="desc">O detetive pisca e movimenta suavemente a mão com a lupa. Chapéu e nome da marca permanecem fixos.</desc>
+<defs>
+ <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111824"/><stop offset=".55" stop-color="#0c111b"/><stop offset="1" stop-color="#111822"/></linearGradient>
+ <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0084ff"/><stop offset=".5" stop-color="#006cff"/><stop offset="1" stop-color="#087dff"/></linearGradient>
+ <clipPath id="body-limit"><path d="M568 640H1087V450L971 410 698 400 628 454Z"/></clipPath>
+ <style>
+  .eyes{transform-box:fill-box;transform-origin:center;animation:blink 5.6s linear infinite}
+  .hand{transform-origin:674px 638px;animation:investigate 2.8s cubic-bezier(.45,0,.55,1) infinite}
+  @keyframes blink{0%,35%,38.5%,72%,75.5%,100%{transform:scaleY(1)}36.3%,37.2%,73.3%,74.2%{transform:scaleY(.055)}}
+  @keyframes investigate{0%,100%{transform:rotate(-1deg) translateY(1px)}50%{transform:rotate(1.8deg) translateY(-3px)}}
+  @media(prefers-reduced-motion:reduce){.eyes,.hand{animation:none!important}}
+ </style>
+</defs>
+<!-- Coat: a complete silhouette behind the moving foreground. -->
+<g fill="url(#navy)">
+ <path d="M568 640C588 580 627 545 680 521L637 460 700 421 926 408C964 416 991 433 1018 458L973 521C1029 546 1064 588 1086 640Z"/>
+ <path d="M703 359C707 384 697 398 677 405 687 419 702 428 724 433L925 439C944 420 955 397 953 356Z"/>
+</g>
+<!-- Original blue lapel and rim accents. -->
+<path d="M638 460 690 483 704 474 700 489 737 540 726 540 681 491Z" fill="url(#blue)"/>
+<path d="M953 355C960 388 948 413 921 440L932 405Z" fill="url(#blue)"/>
+<path d="M637 461 662 446 647 462 683 484Z" fill="#086ffc"/>
+<!-- Eyes blink independently from the hat, face, and wordmark. -->
+<g class="eyes" fill="#fff">
+ <path d="M742 383C760 384 783 391 804 400 789 419 754 424 742 383Z"/>
+ <path d="M845 398C863 387 885 380 906 376 903 411 872 423 845 398Z"/>
+</g>
+<!-- Hat: static, preserving the silhouette of the supplied mark. -->
+<path d="M600 327C638 307 692 296 735 290L924 279C976 279 1035 288 1053 302 1079 323 973 356 889 369 804 388 692 381 629 356 601 345 590 336 600 327Z" fill="url(#blue)"/>
+<path d="M599 328C634 308 690 296 736 290L924 280C967 281 1021 289 1034 301 1055 320 969 351 884 366 800 383 696 378 634 358 609 349 592 339 599 328Z" fill="url(#navy)"/>
+<path d="M698 313C708 263 717 217 736 184 751 159 779 175 803 182 826 190 852 164 878 161 905 156 920 182 951 294 883 328 778 333 698 313Z" fill="url(#blue)"/>
+<path d="M704 277C714 231 720 202 735 183 750 162 779 178 804 183 830 188 850 163 877 162 896 161 910 207 928 263 859 288 778 294 704 277Z" fill="url(#navy)"/>
+<!-- One connected hand / forearm / lens group. -->
+<g clip-path="url(#body-limit)">
+ <g class="hand">
+  <path d="M635 640C657 616 678 591 701 563 718 543 728 534 749 539L837 556 888 537 901 550 805 615 780 641Z" fill="url(#navy)"/>
+  <path d="M748 565 817 526" fill="none" stroke="#0a1019" stroke-width="25" stroke-linecap="round"/>
+  <path d="M749 565 817 526" fill="none" stroke="url(#blue)" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="873" cy="509" r="81" fill="url(#navy)" stroke="#f6fbff" stroke-width="5"/>
+  <circle cx="872" cy="510" r="72" fill="url(#navy)" stroke="url(#blue)" stroke-width="19"/>
+  <path d="M831 491C839 473 857 461 879 463" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M642 613 680 596 715 556C723 546 733 541 747 545 774 550 795 560 809 581 818 594 821 607 806 620 793 616 784 608 772 596 795 619 795 631 779 641H667Z" fill="url(#navy)"/>
+  <path d="M642 613 683 594 716 556C725 544 736 544 749 548 777 554 796 565 807 583 816 597 821 607 806 621L793 616" fill="none" stroke="url(#blue)" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M668 620 683 595 701 582 685 607Z" fill="url(#blue)"/>
+  <path d="M760 583C788 600 803 616 784 639L774 641C788 622 783 607 760 583Z" fill="url(#blue)"/>
+  <path d="M749 613C764 625 770 633 770 641H759C763 634 759 626 749 613Z" fill="url(#blue)"/>
+ </g>
+</g>
+</svg>
