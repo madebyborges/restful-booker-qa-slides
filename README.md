@@ -2,7 +2,7 @@
 
 Apresentação estática em HTML, CSS e JavaScript, com canvas horizontal de **1920 × 1080** e ajuste proporcional à janela.
 
-São 37 slides: abertura, resumo de 7 ocorrências, evidência e análise de 16 variações, impedimentos de PUT/DELETE e conclusão. O conteúdo registra a rodada no Postman de 21 de outubro de 2026 frente aos critérios do case. Os prints e o PDF estão incluídos no projeto.
+São 12 slides: logo animada, abertura, resumo, um slide por bug (7 ocorrências e suas 16 variações agrupadas), impedimentos de PUT/DELETE e conclusão. O conteúdo registra a rodada no Postman de 21 de outubro de 2026 frente aos critérios do case. Os prints e o PDF estão incluídos no projeto.
 
 ## Navegação
 
@@ -15,7 +15,7 @@ São 37 slides: abertura, resumo de 7 ocorrências, evidência e análise de 16 
 - Na abertura, a logo executa sua entrada e mantém os movimentos do personagem. Clique na logo para repetir; voltar ao primeiro slide também reinicia a entrada.
 - Em telas de toque, deslizar para os lados também navega.
 
-Links `#slide-1` até `#slide-37` abrem diretamente o slide desejado. A preferência do sistema para reduzir movimento desativa as animações.
+Links `#slide-1` até `#slide-12` abrem diretamente o slide desejado. A preferência do sistema para reduzir movimento desativa as animações.
 
 ## Executar localmente
 
@@ -49,3 +49,5 @@ GitHub Pages, branch `main`, pasta `/` (raiz). O arquivo `.nojekyll` preserva a 
 O retorno de um `bookingid` no POST não comprova persistência. Os controles de consulta retornaram 404; PUT e DELETE ficaram impedidos, e a origem do 404 não foi determinada. Os impactos são possibilidades; a causa técnica das falhas exige investigação. A numeração dos bugs acompanha o relatório original, começando por BUG-002.
 
 A primeira tela apresenta apenas a logo animada Bug Hunters. Clique na logo ou pressione seta direita/espaço para continuar. O conteúdo da apresentação começa no segundo slide.
+
+As variações aparecem juntas no slide de cada bug. Cada linha mantém acesso ao print correspondente; esperado, obtido, regra, motivo e impacto ficam reunidos à direita.
