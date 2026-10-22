@@ -15,8 +15,9 @@
     const n = slides.length + 1;
     slides.push({title, html:`<section class="slide ${className}" id="slide-${n}" aria-label="${n}. ${esc(title)}" aria-hidden="true" inert>${body}</section>`});
   }
-  add('Abertura', `<div class="cover-copy"><h1 data-reveal>Bugs da API<em>.</em></h1><h2 data-reveal style="--order:1">Evidências que explicam.</h2><p class="date" data-reveal style="--order:2">Reteste no Postman · ${esc(date)}</p><button class="start" data-go="1" data-reveal style="--order:3">Iniciar apresentação ${right}</button><p class="key-hint" data-reveal style="--order:4">Use as setas para navegar · F para tela cheia</p></div><aside class="cover-brand"><button class="cover-logo-button" data-replay-logo aria-label="Repetir entrada da logo Bug Hunters" title="Clique para repetir a entrada">${window.BUG_HUNTERS_COVER_LOGO}</button><div class="cover-stats" data-reveal style="--order:5"><div><strong>7</strong><span>bugs reproduzidos</span></div><div><strong>16</strong><span>variações documentadas</span></div></div></aside>`, 'cover');
-  add('Resumo dos bugs', `<h2 data-reveal>7 bugs. 16 variações.</h2><p class="lede" data-reveal style="--order:1">Criação de reservas · POST /booking · Avaliação frente aos critérios do case.</p><table class="summary-table" data-reveal style="--order:2"><thead><tr><th>Ocorrência</th><th>Falha observada</th><th>Variações</th><th>HTTP</th></tr></thead><tbody>${summary.map(s=>`<tr data-go="${2+cases.findIndex(c=>c.id===s.id)*2}" tabindex="0" role="button" aria-label="Abrir ${esc(s.id)}"><td>${esc(s.id)}</td><td>${esc(s.title)}</td><td>${s.count}</td><td>${esc(s.http)}</td></tr>`).join('')}</tbody></table><p class="overview-note" data-reveal style="--order:3">Selecione uma ocorrência para abrir a evidência. Cada print é seguido da análise do cenário.</p>`, 'overview');
+  add('Bug Hunters', `<button class="cover-logo-button intro-logo" data-go="1" aria-label="Iniciar apresentação Bug Hunters">${window.BUG_HUNTERS_COVER_LOGO}</button>`, 'intro');
+  add('Abertura', `<div class="cover-copy"><h1 data-reveal>Bugs da API<em>.</em></h1><h2 data-reveal style="--order:1">Evidências que explicam.</h2><p class="date" data-reveal style="--order:2">Reteste no Postman · ${esc(date)}</p><button class="start" data-go="2" data-reveal style="--order:3">Iniciar apresentação ${right}</button><p class="key-hint" data-reveal style="--order:4">Use as setas para navegar · F para tela cheia</p></div><aside class="metrics" data-reveal style="--order:2"><div class="metric"><strong>7</strong><span>bugs reproduzidos</span></div><div class="metric"><strong>16</strong><span>variações documentadas</span></div></aside>`, 'cover');
+  add('Resumo dos bugs', `<h2 data-reveal>7 bugs. 16 variações.</h2><p class="lede" data-reveal style="--order:1">Criação de reservas · POST /booking · Avaliação frente aos critérios do case.</p><table class="summary-table" data-reveal style="--order:2"><thead><tr><th>Ocorrência</th><th>Falha observada</th><th>Variações</th><th>HTTP</th></tr></thead><tbody>${summary.map(s=>`<tr data-go="${3+cases.findIndex(c=>c.id===s.id)*2}" tabindex="0" role="button" aria-label="Abrir ${esc(s.id)}"><td>${esc(s.id)}</td><td>${esc(s.title)}</td><td>${s.count}</td><td>${esc(s.http)}</td></tr>`).join('')}</tbody></table><p class="overview-note" data-reveal style="--order:3">Selecione uma ocorrência para abrir a evidência. Cada print é seguido da análise do cenário.</p>`, 'overview');
   const brief = [
     'Campo obrigatório ausente causa erro interno genérico.',
     'Um objeto no nome não recebe validação controlada.',
@@ -63,8 +64,9 @@
     n = Math.max(0,Math.min(slides.length-1,n));
     if (n === current) return;
     current = n;
+    $('presentation').classList.toggle('is-intro',n===0);
     document.querySelector('.cover-logo').getAnimations({subtree:true}).forEach(a=>{if(n===0){a.currentTime=0;a.play();}else a.pause();});
-    $('variation-label').textContent=n>=2&&n<=33?`Variação ${String(Math.floor((n-2)/2)+1).padStart(2,'0')} de 16`:'Apresentação de resultados';
+    $('variation-label').textContent=n>=3&&n<=34?`Variação ${String(Math.floor((n-3)/2)+1).padStart(2,'0')} de 16`:'Apresentação de resultados';
     sections.forEach((s,i)=>{s.classList.toggle('is-active',i===n);s.classList.toggle('is-before',i<n);s.inert=i!==n;s.setAttribute('aria-hidden',String(i!==n));});
     $('counter').textContent = `${String(n+1).padStart(2,'0')} / ${slides.length}`;
     $('progress-fill').style.width = `${(n+1)/slides.length*100}%`;
@@ -78,7 +80,7 @@
   const normalize = s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
   function renderIndex() {
     const q=normalize($('slide-search').value);
-    const entries=[{label:'Abertura',sub:'Visão geral',n:0},{label:'Resumo dos bugs',sub:'7 ocorrências · 16 variações',n:1},...cases.map((c,i)=>({label:c.id+' · '+c.title,sub:'Variação '+String(i+1).padStart(2,'0')+' · HTTP '+c.http,n:2+i*2,analysis:true})),{label:'PUT e DELETE',sub:'Impedimentos e limites do reteste',n:34},{label:'Conclusão',sub:'Prioridades e relatório em PDF',n:35}].filter(e=>normalize(e.label+' '+e.sub).includes(q));
+    const entries=[{label:'Bug Hunters',sub:'Logo animada',n:0},{label:'Abertura',sub:'Visão geral',n:1},{label:'Resumo dos bugs',sub:'7 ocorrências · 16 variações',n:2},...cases.map((c,i)=>({label:c.id+' · '+c.title,sub:'Variação '+String(i+1).padStart(2,'0')+' · HTTP '+c.http,n:3+i*2,analysis:true})),{label:'PUT e DELETE',sub:'Impedimentos e limites do reteste',n:35},{label:'Conclusão',sub:'Prioridades e relatório em PDF',n:36}].filter(e=>normalize(e.label+' '+e.sub).includes(q));
     $('slide-index').innerHTML=entries.length?entries.map(e=>`<div class="index-entry ${current===e.n||e.analysis&&current===e.n+1?'is-current':''}"><div><strong>${esc(e.label)}</strong><small>${esc(e.sub)}</small></div><div class="index-links"><button data-go="${e.n}">${e.analysis?'Print':'Abrir'}</button>${e.analysis?`<button data-go="${e.n+1}">Análise</button>`:''}</div></div>`).join(''):'<p class="empty-index">Nenhum cenário encontrado.</p>';
   }
   function openImage(i) {
