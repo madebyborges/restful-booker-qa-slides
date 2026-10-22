@@ -50,4 +50,4 @@ O retorno de um `bookingid` no POST não comprova persistência. Os controles de
 
 A primeira tela apresenta apenas a logo animada Bug Hunters. Clique na logo ou pressione seta direita/espaço para continuar. O conteúdo da apresentação começa no segundo slide.
 
-As variações aparecem juntas no slide de cada bug. Cada linha mantém acesso ao print correspondente; esperado, obtido, regra, motivo e impacto ficam reunidos à direita.
+Cada bug mostra uma evidência diretamente no slide. O botão Ver variações abre esperado, obtido e análise das variantes; ao escolher uma evidência, o print e os textos do mesmo slide são atualizados. A navegação permanece com 12 slides.
