@@ -236,38 +236,38 @@
     {
       "id": "UI-006",
       "sourceId": "1VnCP17R_3t--v7uSI34098F4tA91VpWP",
-      "title": "Dois quartos com o número 102",
+      "title": "Cliques repetidos duplicam o cadastro",
       "status": "bug",
       "area": "Administração de quartos",
-      "expected": "O cadastro deve impedir dois quartos com o mesmo identificador operacional visível, ou fornecer uma diferenciação clara.",
-      "obtained": "Já existe o quarto 102. Ao criar outro 102 do tipo Family, a lista passa a mostrar duas linhas 102, ambas com preço 300.",
-      "why": "A duplicidade torna ambígua a identificação do quarto na lista administrativa.",
-      "limit": "Unicidade é um critério de integridade adotado nesta revisão; o case não especifica cadastro de quartos. Não foram inspecionados IDs internos nem persistência após recarga.",
+      "expected": "Uma única intenção de criação deve gerar apenas um registro, mesmo com duplo clique ou cliques rápidos em Create.",
+      "obtained": "Após cliques repetidos em Create, a lista apresenta duas linhas do quarto 102, Family, com preço 300, para o mesmo cadastro preenchido.",
+      "why": "O fluxo permite submissões repetidas durante a mesma operação, gerando registros duplicados em vez de concluir uma única criação.",
+      "limit": "O executor esclareceu que o cenário é de duplo ou múltiplo clique em Create. O vídeo mostra cadastro de quartos na administração, não criação de reservas. Sem requisições e logs, a gravação não determina se a causa está na interface, no servidor ou em ambos.",
       "steps": [
-        "Na lista administrativa, identificar o quarto 102 já existente.",
-        "Preencher um novo quarto 102, Family, preço 300, com as comodidades mostradas.",
-        "Acionar Create e conferir as duas linhas com o mesmo número."
+        "Preencher uma única vez o formulário de cadastro de quarto com os dados mostrados.",
+        "Dar duplo clique ou vários cliques rápidos em Create, sem aguardar a conclusão.",
+        "Conferir que a lista contém mais de uma linha referente à mesma intenção de criação."
       ],
       "events": [
         [
           0,
           3.5,
-          "Quarto 102 já existe; outro cadastro com número 102 está preenchido."
+          "Um único formulário de cadastro está preenchido antes de Create."
         ],
         [
           3.6,
           5.2,
-          "Create é acionado e uma nova linha aparece."
+          "Após a sequência de cliques em Create, são exibidas linhas duplicadas."
         ],
         [
           5.3,
           12.3,
-          "A lista exibe dois quartos 102 simultaneamente."
+          "Duas linhas 102 permanecem visíveis para o mesmo cadastro."
         ]
       ],
       "posterTime": 6,
       "severity": "Média",
-      "rule": "Integridade cadastral: unicidade do identificador operacional. Critério de revisão fora dos CA explícitos do case.",
+      "rule": "Prevenção de envios duplicados na mesma operação, conforme esclarecimento do executor. Não se trata apenas de validar a unicidade do número do quarto.",
       "video": "assets/videos/ui-006.mp4",
       "poster": "assets/videos/ui-006.jpg",
       "captions": "assets/videos/ui-006.vtt",

@@ -8,7 +8,7 @@ Inspeção visual por quadros, sequência das ações e comparação antes/depoi
 
 ## Resultado da revisão
 
-10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. Navegação e unicidade usam critérios de usabilidade/integridade explicitamente adotados, não critérios atribuídos ao PDF.
+10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. Navegação usa critérios de usabilidade explicitamente adotados; o cenário de cliques repetidos segue o esclarecimento do executor. Esses critérios não foram atribuídos ao PDF.
 
 Todos os vídeos são curtos (4 a 26 segundos) e foram mantidos integrais para preservar ação e resultado. Os originais permanecem no Drive. Legendas são descrições editoriais, não transcrição de fala.
 
@@ -221,32 +221,33 @@ Cenário: Seleção de período passado no calendário
 | 7.0–18.5s | Outros intervalos são destacados visualmente. |
 | 19.0–26.3s | A gravação termina no calendário, sem confirmação de reserva. |
 
-## UI-006 · Dois quartos com o número 102
+## UI-006 · Cliques repetidos duplicam o cadastro
 
 **Classificação:** Bug observado · **Criticidade sugerida:** Média · **Área:** Administração de quartos
 
-**Regra:** Integridade cadastral: unicidade do identificador operacional. Critério de revisão fora dos CA explícitos do case.
+**Regra:** Prevenção de envios duplicados na mesma operação, conforme esclarecimento do executor. Não se trata apenas de validar a unicidade do número do quarto.
 
 ### Cenário e execução
 
-1. Na lista administrativa, identificar o quarto 102 já existente.
-2. Preencher um novo quarto 102, Family, preço 300, com as comodidades mostradas.
-3. Acionar Create e conferir as duas linhas com o mesmo número.
+1. Preencher uma única vez o formulário de cadastro de quarto com os dados mostrados.
+2. Dar duplo clique ou vários cliques rápidos em Create, sem aguardar a conclusão.
+3. Conferir que a lista contém mais de uma linha referente à mesma intenção de criação.
 
 ```gherkin
-Cenário: Dois quartos com o número 102
-  Dado que a interface está na área de administração de quartos
-  Quando executo a ação descrita: Preencher um novo quarto 102, Family, preço 300, com as comodidades mostradas.
-  Então observo na gravação: Já existe o quarto 102. Ao criar outro 102 do tipo Family, a lista passa a mostrar duas linhas 102, ambas com preço 300.
+Cenário: Cliques repetidos duplicam o cadastro
+  Dado que preenchi uma única vez o formulário de cadastro de quarto
+  Quando dou duplo clique ou vários cliques rápidos em Create
+  Então observo mais de uma linha para a mesma intenção de criação
+  E o esperado é concluir apenas uma criação, sem registros duplicados
 ```
 
-**Esperado:** O cadastro deve impedir dois quartos com o mesmo identificador operacional visível, ou fornecer uma diferenciação clara.
+**Esperado:** Uma única intenção de criação deve gerar apenas um registro, mesmo com duplo clique ou cliques rápidos em Create.
 
-**Obtido:** Já existe o quarto 102. Ao criar outro 102 do tipo Family, a lista passa a mostrar duas linhas 102, ambas com preço 300.
+**Obtido:** Após cliques repetidos em Create, a lista apresenta duas linhas do quarto 102, Family, com preço 300, para o mesmo cadastro preenchido.
 
-**Por que / análise:** A duplicidade torna ambígua a identificação do quarto na lista administrativa.
+**Por que / análise:** O fluxo permite submissões repetidas durante a mesma operação, gerando registros duplicados em vez de concluir uma única criação.
 
-**Limite e próximo reteste:** Unicidade é um critério de integridade adotado nesta revisão; o case não especifica cadastro de quartos. Não foram inspecionados IDs internos nem persistência após recarga.
+**Limite e próximo reteste:** O executor esclareceu que o cenário é de duplo ou múltiplo clique em Create. O vídeo mostra cadastro de quartos na administração, não criação de reservas. Sem requisições e logs, a gravação não determina se a causa está na interface, no servidor ou em ambos.
 
 ### Rastreabilidade
 
@@ -258,9 +259,9 @@ Cenário: Dois quartos com o número 102
 
 | Tempo no original e publicado | Evidência visível |
 |---|---|
-| 0.0–3.5s | Quarto 102 já existe; outro cadastro com número 102 está preenchido. |
-| 3.6–5.2s | Create é acionado e uma nova linha aparece. |
-| 5.3–12.3s | A lista exibe dois quartos 102 simultaneamente. |
+| 0.0–3.5s | Um único formulário de cadastro está preenchido antes de Create. |
+| 3.6–5.2s | Após a sequência de cliques em Create, são exibidas linhas duplicadas. |
+| 5.3–12.3s | Duas linhas 102 permanecem visíveis para o mesmo cadastro. |
 
 ## UI-007 · Exclusão de quarto remove uma linha
 

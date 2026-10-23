@@ -1,10 +1,10 @@
 WEBVTT
 
 00:00:00.000 --> 00:00:03.500
-Quarto 102 já existe; outro cadastro com número 102 está preenchido.
+Um único formulário de cadastro está preenchido antes de Create.
 
 00:00:03.600 --> 00:00:05.200
-Create é acionado e uma nova linha aparece.
+Após a sequência de cliques em Create, são exibidas linhas duplicadas.
 
 00:00:05.300 --> 00:00:12.300
-A lista exibe dois quartos 102 simultaneamente.
+Duas linhas 102 permanecem visíveis para o mesmo cadastro.
