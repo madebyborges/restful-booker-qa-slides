@@ -61,3 +61,5 @@ Abra `manual.html` para revisar as 10 gravações: 3 bugs observados, 6 ocorrên
 Os vídeos são integrais e foram comprimidos com FFmpeg em H.264/AAC, na resolução original, sem cortes nem alteração de velocidade. Os originais permanecem no Drive. Os arquivos `EVIDENCIAS-UTILIZACAO.md` e `manual-data.json` registram passos, cenário, resultado, critério, limites, tempos e hashes SHA-256. As classificações são independentes dos 7 bugs da API.
 
 Para `manual.html`, use um servidor HTTP local com suporte a byte ranges (necessário para buscar trechos dos vídeos) ou GitHub Pages (o navegador precisa carregar o JSON); o arquivo da apresentação principal continua independente de build.
+
+Ao abrir ou trocar de evidência, o vídeo selecionado carrega e começa automaticamente, sem som. O áudio pode ser ativado nos controles do player. Restrições do navegador ainda podem exigir um clique em reproduzir.

@@ -23,12 +23,13 @@
   }
   function select(id,updateHash=true){
     const c=records.find(c=>c.id===id)||visible[0];if(!c)return;
-    current=c;video.pause();video.poster=c.poster;
+    current=c;video.pause();video.muted=true;video.defaultMuted=true;video.autoplay=true;video.poster=c.poster;
     const source=document.createElement('source');source.src=c.video;source.type='video/mp4';
     const track=document.createElement('track');track.kind='captions';track.label='Português · descrição da evidência';track.srclang='pt-BR';track.src=c.captions;
     video.replaceChildren(source,track);video.load();
+    video.play().catch(error=>{if(error.name==='NotAllowedError')$('announcement').textContent='Use o botão de reprodução para iniciar o vídeo.';});
     $('case-id').textContent=c.id;$('case-title').textContent=c.title;$('case-status').textContent=labels[c.status];$('case-status').dataset.status=c.status;
-    $('case-area').textContent=c.area;$('duration').textContent=`${c.duration.toFixed(2).replace('.',',')} s · integral`;
+    $('case-area').textContent=c.area;$('duration').textContent=`${c.duration.toFixed(2).replace('.',',')} s · início sem som`;
     $('source-link').href=c.sourceUrl;
     for(const field of ['expected','obtained','why','rule','limit'])$(field).textContent=c[field];
     $('why-title').textContent=c.status==='bug'?'Por que é bug?':c.status==='controle'?'O que o controle demonstra':'Por que ainda está em análise?';
