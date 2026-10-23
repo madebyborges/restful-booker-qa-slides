@@ -56,7 +56,7 @@ Cada bug mostra uma evidência diretamente no slide. O botão Ver variações ab
 
 ## Evidências de utilização em vídeo
 
-Abra `manual.html` para revisar as 10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. A exibição segue o mesmo canvas 1920 × 1080 dos slides da API: vídeo à esquerda, análise à direita e setas, progresso, índice e tela cheia no rodapé. O índice reúne os 10 vídeos com filtros e documentação. O botão **Front · Vídeos** no cabeçalho da API alterna para esta seção; o botão **API** retorna ao resumo da apresentação. Há capítulos clicáveis e legendas descritivas opcionais.
+Abra `manual.html` para revisar as 10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. A exibição segue o mesmo canvas 1920 × 1080 dos slides da API: vídeo à esquerda, análise à direita e setas, progresso, índice e tela cheia no rodapé. O índice reúne os 10 vídeos com filtros e documentação. O botão **Front · Vídeos** no cabeçalho da API alterna para esta seção; o botão **API** retorna ao resumo da apresentação. O vídeo ocupa a altura disponível; suas legendas descritivas são opcionais. Os tempos dos acontecimentos permanecem na documentação completa.
 
 Os vídeos são integrais e foram comprimidos com FFmpeg em H.264/AAC, na resolução original, sem cortes nem alteração de velocidade. Os originais permanecem no Drive. Os arquivos `EVIDENCIAS-UTILIZACAO.md` e `manual-data.json` registram passos, cenário, resultado, critério, limites, tempos e hashes SHA-256. As classificações são independentes dos 7 bugs da API.
 
@@ -80,3 +80,5 @@ Use **Sair desta sessão** para voltar à navegação independente. Cada sessão
 Backend dedicado: projeto Supabase `bug-hunters-apresentacao`. A configuração de navegador em `shared-config.js` contém somente URL e chave publicável. A tabela tem RLS, acesso limitado à sessão pelo segredo aleatório do link e atualização de versão no servidor; o segredo não é armazenado em texto puro. O SQL versionado está em `supabase/session-schema.sql`. A sessão não pode ser lida ou modificada apenas conhecendo a chave publicável.
 
 O QR Code é gerado no próprio navegador com `qrcode-generator` 2.0.4 (MIT), incluído em `assets/vendor`, sem enviar o link da sessão a serviços externos.
+
+A barra do vídeo começa oculta. Passe o mouse para exibir os controles, use Tab para acessá-los pelo teclado ou toque no vídeo pelo celular. Ao sair com o mouse, a barra é ocultada; os vídeos continuam em autoplay e loop.

@@ -3,6 +3,15 @@
   'use strict';
   const $=id=>document.getElementById(id), video=$('evidence-video');
   const index=$('front-index');
+  let touchControlsTimer;
+  const fullscreenVideo=()=>document.fullscreenElement===video||video.webkitDisplayingFullscreen;
+  video.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')video.controls=true;});
+  video.addEventListener('pointerleave',()=>{if(!fullscreenVideo()&&!video.matches(':focus-visible'))video.controls=false;});
+  video.addEventListener('focus',()=>{if(video.matches(':focus-visible'))video.controls=true;});
+  video.addEventListener('blur',()=>{if(!video.matches(':hover')&&!fullscreenVideo())video.controls=false;});
+  video.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'){video.controls=true;clearTimeout(touchControlsTimer);touchControlsTimer=setTimeout(()=>{if(!fullscreenVideo()&&!video.paused)video.controls=false;},4000);}});
+  video.addEventListener('keydown',e=>{video.controls=true;if(e.key===' '){e.preventDefault();if(video.paused)video.play().catch(()=>{});else video.pause();}});
+  document.addEventListener('fullscreenchange',()=>{video.controls=fullscreenVideo()||video.matches(':hover')||video.matches(':focus-visible');});
   function fit(){document.documentElement.style.setProperty('--front-scale',Math.min(innerWidth/1920,innerHeight/1080));}
   fit();addEventListener('resize',fit);
   $('open-front-index').onclick=()=>index.showModal();$('close-front-index').onclick=()=>index.close();
@@ -24,7 +33,7 @@
   }
   function select(id,updateHash=true){
     const c=records.find(c=>c.id===id)||visible[0];if(!c)return;
-    current=c;video.pause();video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.poster=c.poster;
+    current=c;clearTimeout(touchControlsTimer);video.controls=false;video.pause();video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.poster=c.poster;
     const source=document.createElement('source');source.src=c.video;source.type='video/mp4';
     const track=document.createElement('track');track.kind='captions';track.label='Português · descrição da evidência';track.srclang='pt-BR';track.src=c.captions;
     video.replaceChildren(source,track);video.load();
@@ -36,11 +45,6 @@
     $('why-title').textContent=c.status==='bug'?'Por que é bug?':c.status==='controle'?'O que o controle demonstra':'Por que ainda está em análise?';
     $('severity').textContent='Criticidade sugerida: '+c.severity;
     $('steps').replaceChildren(...c.steps.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
-    $('chapters').replaceChildren(...c.events.map(([start,end,text])=>{
-      const b=document.createElement('button'),t=document.createElement('time'),s=document.createElement('span');
-      t.textContent=time(start);s.textContent=text;b.append(t,s);b.title=`${start.toFixed(1)}–${end.toFixed(1)} segundos`;
-      b.addEventListener('click',()=>{if(video.readyState>=1)video.currentTime=start;else video.addEventListener('loadedmetadata',()=>video.currentTime=start,{once:true});video.focus({preventScroll:true});});return b;
-    }));
     $('execution').open=false;
     const i=visible.findIndex(x=>x.id===c.id);$('counter').textContent=`${i+1} / ${visible.length}`;
     $('front-progress').style.width=((i+1)/visible.length*100)+'%';const progress=document.querySelector('.nav-progress');progress.setAttribute('aria-valuemax',visible.length);progress.setAttribute('aria-valuenow',i+1);
