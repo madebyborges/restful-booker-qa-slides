@@ -69,8 +69,8 @@ O vídeo selecionado fica em loop: ao chegar ao fim, reinicia automaticamente en
 ## Controle compartilhado pela internet
 
 1. No PC, abra um slide e clique em **Ao vivo** no cabeçalho.
-2. Clique em **Criar sessão compartilhada** e copie o link.
-3. Abra esse mesmo link no celular. O controle com botões grandes aparece automaticamente em telas pequenas.
+2. Clique em **Criar sessão e gerar QR Code**.
+3. Escaneie o QR Code com a câmera do celular ou copie e abra o link no aparelho. O controle com botões grandes aparece automaticamente em telas pequenas.
 4. Use **Anterior**, **Próximo**, **Modo API** ou **Front · Vídeos**. Todos os participantes que possuem o link podem controlar a sessão.
 
 A sessão sincroniza o slide da API, a variação selecionada, o vídeo do Front, o filtro e a troca de modo. Quem entra depois recebe o estado atual. Não é necessário estar na mesma rede Wi-Fi. O estado é consultado no Supabase aproximadamente a cada segundo enquanto a página está visível; ao voltar à página ou reconectar, ela consulta novamente. Os vídeos mantêm autoplay/loop locais; não se pretende sincronizar o instante exato de cada frame.
@@ -78,3 +78,5 @@ A sessão sincroniza o slide da API, a variação selecionada, o vídeo do Front
 Use **Sair desta sessão** para voltar à navegação independente. Cada sessão dura até 24 horas. O link é a autorização para controlar a sessão; compartilhe somente com quem deve participar. Nenhum usuário/senha ou dado do sistema de reservas é enviado ao Supabase: apenas o estado da apresentação.
 
 Backend dedicado: projeto Supabase `bug-hunters-apresentacao`. A configuração de navegador em `shared-config.js` contém somente URL e chave publicável. A tabela tem RLS, acesso limitado à sessão pelo segredo aleatório do link e atualização de versão no servidor; o segredo não é armazenado em texto puro. O SQL versionado está em `supabase/session-schema.sql`. A sessão não pode ser lida ou modificada apenas conhecendo a chave publicável.
+
+O QR Code é gerado no próprio navegador com `qrcode-generator` 2.0.4 (MIT), incluído em `assets/vendor`, sem enviar o link da sessão a serviços externos.
