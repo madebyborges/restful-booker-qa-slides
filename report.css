@@ -24,3 +24,5 @@ body{background:#111c30}.presentation{background:radial-gradient(ellipse at 72% 
 .cover-ui-link{display:inline-block;margin-top:22px;font-size:24px;font-weight:600;color:#087aff}.cover-ui-link:hover{text-decoration:underline}.closing-actions{flex-wrap:wrap}
 
 .report-meta a.qa-badge{width:94px}.report-meta a.qa-badge:hover{background:#d7eaff}
+
+.report-meta a.front-mode-link{width:auto;padding:0 18px;font-size:20px}

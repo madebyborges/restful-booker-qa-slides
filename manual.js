@@ -2,8 +2,13 @@
 (() => {
   'use strict';
   const $=id=>document.getElementById(id), video=$('evidence-video');
+  const index=$('front-index');
+  function fit(){document.documentElement.style.setProperty('--front-scale',Math.min(innerWidth/1920,innerHeight/1080));}
+  fit();addEventListener('resize',fit);
+  $('open-front-index').onclick=()=>index.showModal();$('close-front-index').onclick=()=>index.close();
+  $('front-fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{$('announcement').textContent='Use F11 para ampliar a janela.';}};
+  index.addEventListener('click',e=>{if(e.target===index){const r=index.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)index.close();}});
   const labels={bug:'Bug observado',inconclusivo:'Em análise',controle:'Controle sem falha visual'};
-  $('presentation-mode').addEventListener('click',()=>{const active=document.body.classList.toggle('presenting');$('presentation-mode').setAttribute('aria-pressed',String(active));$('presentation-mode').textContent=active?'Sair da apresentação':'Modo apresentação';window.scrollTo(0,0);});
   let records=[],visible=[],filter='all',current=null;
   const time=value=>`${String(Math.floor(value/60)).padStart(2,'0')}:${String(Math.floor(value%60)).padStart(2,'0')}`;
   function library(){
@@ -13,7 +18,7 @@
       const image=new Image();image.src=c.poster;image.alt='';image.loading='lazy';
       const meta=document.createElement('span');meta.textContent=`${c.id} · ${labels[c.status]} · ${time(c.duration)}`;
       const title=document.createElement('strong');title.textContent=c.title;
-      button.append(image,meta,title);button.addEventListener('click',()=>select(c.id,true));container.append(button);
+      button.append(image,meta,title);button.addEventListener('click',()=>{select(c.id,true);index.close();});container.append(button);
     }
   }
   function select(id,updateHash=true){
@@ -36,6 +41,7 @@
     }));
     $('execution').open=false;
     const i=visible.findIndex(x=>x.id===c.id);$('counter').textContent=`${i+1} / ${visible.length}`;
+    $('front-progress').style.width=((i+1)/visible.length*100)+'%';const progress=document.querySelector('.nav-progress');progress.setAttribute('aria-valuemax',visible.length);progress.setAttribute('aria-valuenow',i+1);
     $('previous').disabled=i<=0;$('next').disabled=i>=visible.length-1;
     library();if(updateHash)history.replaceState(null,'','#'+c.id.toLowerCase());
     $('announcement').textContent=c.id+': '+c.title+'. '+labels[c.status];
@@ -50,7 +56,7 @@
   $('previous').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
   document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>applyFilter(b.dataset.filter)));
   addEventListener('hashchange',()=>{const c=records.find(c=>'#'+c.id.toLowerCase()===location.hash);if(c){if(filter!=='all'&&c.status!==filter)applyFilter('all');select(c.id,false);}});
-  document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||e.target.closest('video,input,textarea,select,button,summary,a'))return;if(e.key==='ArrowRight'){e.preventDefault();move(1);}if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}});
+  document.addEventListener('keydown',e=>{if(index.open||e.ctrlKey||e.metaKey||e.altKey||e.target.closest('video,input,textarea,select,button,summary,a'))return;if(e.key.toLowerCase()==='i'){e.preventDefault();index.showModal();}if(e.key==='ArrowRight'){e.preventDefault();move(1);}if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();});
   fetch('manual-data.json').then(r=>{if(!r.ok)throw Error('Falha ao carregar as evidências.');return r.json();}).then(data=>{records=data.records;visible=records;select(location.hash.slice(1).toUpperCase()||records[0].id,false);}).catch(()=>{$('case-title').textContent='Não foi possível carregar as evidências. Atualize a página ou abra a documentação completa.';});
 })();
