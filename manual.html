@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f8fbff">
+  <meta name="description" content="Evidências de utilização do Restful Booker: 10 vídeos revisados, cenários, resultados e análise dos bugs de interface.">
+  <title>Evidências em vídeo | Bug Hunters</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="manual.css">
+  <script src="manual.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="index.html#slide-1" aria-label="Bug Hunters — apresentação"><img src="assets/bug-hunters-symbol.svg" alt=""><span>BUG<b>HUNTERS</b></span></a>
+    <div class="heading"><span>RESTFUL BOOKER · INTERFACE WEB</span><strong>Evidências de utilização</strong></div>
+    <div class="header-actions"><button class="button" id="presentation-mode" aria-pressed="false">Modo apresentação</button><a class="button api-link" href="index.html#slide-3">Apresentação da API ↗</a></div>
+  </header>
+  <main>
+    <section class="overview" aria-label="Resultado da revisão">
+      <div><p class="eyebrow">AÇÃO, RESULTADO E CONTEXTO</p><h1>A evidência em movimento<span>.</span></h1></div>
+      <div class="metrics"><div><b>10</b><span>vídeos revisados</span></div><div><b>3</b><span>bugs observados</span></div><div><b>6</b><span>em análise</span></div><div><b>1</b><span>controle visual</span></div></div>
+    </section>
+    <div class="filter-row"><div class="filters" role="group" aria-label="Filtrar evidências"><button data-filter="all" aria-pressed="true">Todos os vídeos (10)</button><button data-filter="bug" aria-pressed="false">Bugs observados (3)</button><button data-filter="inconclusivo" aria-pressed="false">Em análise (6)</button><button data-filter="controle" aria-pressed="false">Controle (1)</button></div><span class="review-note">Gravações integrais · legendas descritivas opcionais</span></div>
+    <section class="workspace" aria-label="Evidência selecionada">
+      <div class="media-column">
+        <div class="case-heading"><div><span id="case-id" class="id-tag"></span><span id="case-status" class="status"></span></div><h2 id="case-title"></h2></div>
+        <div class="video-stage"><video id="evidence-video" controls playsinline preload="metadata" aria-label="Gravação de utilização selecionada"></video></div>
+        <div class="video-meta"><span id="case-area"></span><span id="duration"></span><a id="source-link" target="_blank" rel="noopener">Original no Drive ↗</a></div>
+        <div class="timeline"><h3>Momentos da gravação <small>Clique para ir ao trecho</small></h3><div id="chapters"></div></div>
+        <div class="case-navigation"><button id="previous" class="button" aria-label="Evidência anterior">← Anterior</button><span id="counter"></span><button id="next" class="button" aria-label="Próxima evidência">Próxima →</button></div>
+      </div>
+      <aside class="analysis" aria-label="Cenário e análise">
+        <article class="box expected"><h3><span aria-hidden="true">◎</span> Cenário esperado</h3><p id="expected"></p></article>
+        <article class="box obtained"><h3><span aria-hidden="true">↳</span> Resultado obtido</h3><p id="obtained"></p></article>
+        <article class="box explanation"><h3 id="why-title">Por que é bug?</h3><p id="why"></p><div class="rule"><strong>Regra / critério</strong><p id="rule"></p></div></article>
+        <details class="details" id="execution"><summary>Cenário, passos e limites da evidência</summary><ol id="steps"></ol><h4>O que ainda precisa ser confirmado</h4><p id="limit"></p><p id="severity"></p></details>
+      </aside>
+    </section>
+    <section class="library" aria-label="Índice dos vídeos"><div class="library-heading"><h2>Escolha uma evidência</h2><a href="EVIDENCIAS-UTILIZACAO.md" download>Baixar documentação completa ↓</a></div><nav id="evidence-list" aria-label="Vídeos disponíveis"></nav></section>
+    <footer class="scope"><p><strong>Escopo da revisão.</strong> Interface pública e administrativa, distinta da API dos slides anteriores. Datas de 21/10/2026 inferidas dos nomes dos arquivos; versão da aplicação não informada. A revisão documenta o que as gravações mostram, sem nova execução no sistema.</p><p>Os critérios de navegação e unicidade são critérios de revisão declarados. As ocorrências em análise não entram na contagem de bugs. A exclusão mostrada é de quarto, não de reserva; a tela de login no fim de um vídeo não comprova falha de autenticação.</p><a href="manual-data.json" download>Dados e rastreabilidade (JSON) ↓</a></footer>
+    <p class="sr-only" id="announcement" role="status" aria-live="polite"></p>
+    <noscript>Ative JavaScript para abrir os vídeos. <a href="EVIDENCIAS-UTILIZACAO.md">Ler documentação</a>.</noscript>
+  </main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.800
+Edição manual dos campos de check-in e checkout.
+
+00:00:05.000 --> 00:00:11.900
+Tentativas de inserir caracteres e alterar o ano.
+
+00:00:12.000 --> 00:00:15.700
+Checkout exibe 22/10/0002 e o calendário acompanha o ano.

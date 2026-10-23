@@ -1,0 +1,482 @@
+{
+  "scope": "Revisão das 10 gravações da pasta Bug Hunters - QA no Drive do Edilson. Interface pública e administrativa; distinta da API restful-booker.herokuapp.com.",
+  "recordingDate": "21/10/2026, inferida exclusivamente do nome dos arquivos; build e relógio do ambiente não confirmados.",
+  "method": "Inspeção visual por quadros, sequência das ações e comparação antes/depois. Sem nova execução contra a aplicação. Classificação restrita ao que as gravações demonstram.",
+  "records": [
+    {
+      "id": "UI-001",
+      "sourceId": "1bdo5lxyxQ-2U1xsDnnxpquH7UjfpgjmE",
+      "title": "Menu Comodidades sem destino visível",
+      "status": "bug",
+      "area": "Navegação",
+      "expected": "O link deve levar à seção de comodidades ou apresentar um destino válido.",
+      "obtained": "As tentativas em Comodidades mantêm a tela na área de disponibilidade e quartos. A recarga intermediária retorna ao topo; a tentativa é repetida.",
+      "why": "Um item de navegação oferece uma ação que não produz o destino anunciado durante a gravação.",
+      "limit": "A causa não foi inspecionada no código. A tradução do navegador alterna os rótulos; não foi classificada como bug de idioma.",
+      "steps": [
+        "Abrir a página pública e chegar à disponibilidade.",
+        "Acionar Comodidades/Amenities no menu superior.",
+        "Observar a posição da página e repetir após a recarga mostrada."
+      ],
+      "events": [
+        [
+          0,
+          4.3,
+          "Tentativas no link Comodidades; a seção de disponibilidade permanece visível."
+        ],
+        [
+          5.5,
+          9.4,
+          "Após a recarga, a página retorna ao topo e à disponibilidade."
+        ],
+        [
+          10,
+          13.3,
+          "Nova tentativa em Comodidades sem destino visível."
+        ]
+      ],
+      "posterTime": 11.3,
+      "severity": "Baixa",
+      "rule": "Critério de usabilidade adotado na revisão; sem CA específico no case.",
+      "video": "assets/videos/ui-001.mp4",
+      "poster": "assets/videos/ui-001.jpg",
+      "captions": "assets/videos/ui-001.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 19.54.42.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1bdo5lxyxQ-2U1xsDnnxpquH7UjfpgjmE/view?usp=drivesdk",
+      "duration": 13.37,
+      "originalSha256": "d6f0338bf14559398c5be343fa295e32ff37571fc1d15fa4a5ad61d7ea95ffb2",
+      "publishedSha256": "7b4101c235132910f3e65bbd40c4db7e6d5a81a721eb4ccac3bcece0245ad810",
+      "bytes": 510937,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-002",
+      "sourceId": "1Vud4sF3BQ824gfBqMBzOaHOQh0BtJ0eD",
+      "title": "Contato após mensagem enviada",
+      "status": "inconclusivo",
+      "area": "Contato / rodapé",
+      "expected": "Os links do rodapé devem levar às suas seções. A possibilidade de iniciar uma segunda mensagem precisa de regra definida.",
+      "obtained": "A tela já começa na confirmação de contato. Há navegação para o topo/quartos e retorno à confirmação; não aparece um novo formulário.",
+      "why": "A confirmação continuar visível não demonstra, sozinha, uma falha de navegação ou perda da mensagem.",
+      "limit": "O envio e os dados usados não constam neste vídeo. Não há evidência de validação de e-mail, telefone ou nova tentativa de envio.",
+      "steps": [
+        "Partir da confirmação de mensagem enviada.",
+        "Acionar os links rápidos do rodapé.",
+        "Verificar retorno ao topo, quartos e seção de contato."
+      ],
+      "events": [
+        [
+          0,
+          4.7,
+          "A gravação começa com a confirmação de contato já exibida."
+        ],
+        [
+          5,
+          10.2,
+          "Os links levam ao topo e à região de quartos."
+        ],
+        [
+          10.3,
+          16.8,
+          "A seção de contato continua exibindo a confirmação anterior."
+        ]
+      ],
+      "posterTime": 1.5,
+      "severity": "A avaliar",
+      "rule": "UC05 é contexto do fluxo; nenhum CA violado foi comprovado nesta gravação.",
+      "video": "assets/videos/ui-002.mp4",
+      "poster": "assets/videos/ui-002.jpg",
+      "captions": "assets/videos/ui-002.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 19.59.21.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1Vud4sF3BQ824gfBqMBzOaHOQh0BtJ0eD/view?usp=drivesdk",
+      "duration": 16.9,
+      "originalSha256": "b9ba18c0e1f36ed123579007414de18420286b5aa1a35e2542c1644c6aabcce6",
+      "publishedSha256": "b3baab751a1c4d23e98254450d7228a914ccddc77d833fbde4c3810a551dd933",
+      "bytes": 3314065,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-003",
+      "sourceId": "1r2c9nTG3F41bTDSmlXFOHxslOtCpeOer",
+      "title": "Entrada de datas com ano 0002",
+      "status": "inconclusivo",
+      "area": "Disponibilidade",
+      "expected": "Datas inválidas e períodos retroativos devem ser validados antes de aceitar um agendamento.",
+      "obtained": "São digitados caracteres nos campos e o checkout termina em 22/10/0002. O calendário acompanha o ano 0002, sem resultado de reserva demonstrado.",
+      "why": "A edição do campo indica um cenário negativo útil, mas não prova que uma reserva ou consulta foi aceita com esses dados.",
+      "limit": "Falta uma submissão inequívoca seguida da resposta. Não foi registrado como bug confirmado de reserva retroativa.",
+      "steps": [
+        "Abrir Check Availability.",
+        "Editar manualmente os campos, incluindo texto e ano com poucos dígitos.",
+        "Tentar concluir a consulta e registrar a validação em um reteste."
+      ],
+      "events": [
+        [
+          0,
+          4.8,
+          "Edição manual dos campos de check-in e checkout."
+        ],
+        [
+          5,
+          11.9,
+          "Tentativas de inserir caracteres e alterar o ano."
+        ],
+        [
+          12,
+          15.7,
+          "Checkout exibe 22/10/0002 e o calendário acompanha o ano."
+        ]
+      ],
+      "posterTime": 14.6,
+      "severity": "A avaliar",
+      "rule": "UC02 / CA3 e CA4; aceitação final não demonstrada.",
+      "video": "assets/videos/ui-003.mp4",
+      "poster": "assets/videos/ui-003.jpg",
+      "captions": "assets/videos/ui-003.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.03.14.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1r2c9nTG3F41bTDSmlXFOHxslOtCpeOer/view?usp=drivesdk",
+      "duration": 15.77,
+      "originalSha256": "83fc6a41d7ee61be7aaece82d947f72146a5460d38d0339d232f9ca2dc58b664",
+      "publishedSha256": "53df9411e50cac6cc614d99928b8da38ec62faf4b773ab4a82477cc6c6b0d77a",
+      "bytes": 232640,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-004",
+      "sourceId": "1QQi_tTq_j1N5bV_VpkttBgzEeE0mUCmD",
+      "title": "Breadcrumb Rooms não navega",
+      "status": "bug",
+      "area": "Detalhe do quarto",
+      "expected": "O link Rooms no breadcrumb deve retornar à listagem de quartos.",
+      "obtained": "As tentativas em Rooms mantêm o detalhe do Single Room. O link Home funciona como controle de navegação e o quarto é aberto novamente.",
+      "why": "O caminho de retorno oferecido pela interface não conclui a navegação esperada.",
+      "limit": "Falha observada na interface da gravação; destino HTML e causa técnica não foram inspecionados.",
+      "steps": [
+        "Abrir o detalhe de Single Room.",
+        "Acionar Rooms no breadcrumb e observar a tela.",
+        "Usar Home como controle, reabrir o quarto e repetir Rooms."
+      ],
+      "events": [
+        [
+          0,
+          6.8,
+          "Tentativas nos links do breadcrumb no detalhe do quarto."
+        ],
+        [
+          7,
+          14.6,
+          "Home retorna à página pública; o quarto é reaberto."
+        ],
+        [
+          15,
+          23.7,
+          "Novas tentativas em Rooms mantêm o detalhe visível."
+        ]
+      ],
+      "posterTime": 18,
+      "severity": "Baixa",
+      "rule": "Critério de usabilidade adotado na revisão; sem CA específico no case.",
+      "video": "assets/videos/ui-004.mp4",
+      "poster": "assets/videos/ui-004.jpg",
+      "captions": "assets/videos/ui-004.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.12.10.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1QQi_tTq_j1N5bV_VpkttBgzEeE0mUCmD/view?usp=drivesdk",
+      "duration": 23.83,
+      "originalSha256": "3fe5b393c3142317909f5e26f0e9798a6d14c04b86ca131f491b7b84357b639e",
+      "publishedSha256": "69db4eb127e6f7da2b54a14202c070eb59a2b65ef0586d012e3e992b287b703e",
+      "bytes": 2019558,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-005",
+      "sourceId": "1zq2896BkZGuQkE08Gq5kyMkxLfVapxbV",
+      "title": "Seleção de período passado no calendário",
+      "status": "inconclusivo",
+      "area": "Calendário de reserva",
+      "expected": "O sistema não deve aceitar agendamento retroativo; a seleção visual deve orientar o usuário sobre datas permitidas.",
+      "obtained": "O calendário de Suite Room permite destacar intervalos em setembro de 2026. A data sugerida pelos nomes dos arquivos é 21/10/2026.",
+      "why": "Selecionar um intervalo visual não equivale a concluir a reserva. É necessário verificar o bloqueio na submissão.",
+      "limit": "Não há confirmação de reserva, relógio confiável do ambiente ou resposta da submissão. Não é prova de reserva retroativa criada.",
+      "steps": [
+        "Abrir Suite Room e o calendário.",
+        "Navegar para setembro de 2026 e selecionar intervalos.",
+        "Em reteste, submeter com a data atual do ambiente registrada."
+      ],
+      "events": [
+        [
+          0,
+          6.5,
+          "Calendário mostra setembro de 2026 e seleção de dias."
+        ],
+        [
+          7,
+          18.5,
+          "Outros intervalos são destacados visualmente."
+        ],
+        [
+          19,
+          26.3,
+          "A gravação termina no calendário, sem confirmação de reserva."
+        ]
+      ],
+      "posterTime": 9.6,
+      "severity": "A avaliar",
+      "rule": "UC02 / CA3; bloquear o agendamento é o critério, não apenas o destaque visual.",
+      "video": "assets/videos/ui-005.mp4",
+      "poster": "assets/videos/ui-005.jpg",
+      "captions": "assets/videos/ui-005.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.15.29.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1zq2896BkZGuQkE08Gq5kyMkxLfVapxbV/view?usp=drivesdk",
+      "duration": 26.37,
+      "originalSha256": "51ccb67960bff67b970ba1d633c5b1f0df917135599c093f91efe1f6a1cbe391",
+      "publishedSha256": "e5566d376545d0e5c3f6fed5f041ce05e73bbe0b758ba13dd8e9ee6cb2fa5771",
+      "bytes": 895104,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-006",
+      "sourceId": "1VnCP17R_3t--v7uSI34098F4tA91VpWP",
+      "title": "Dois quartos com o número 102",
+      "status": "bug",
+      "area": "Administração de quartos",
+      "expected": "O cadastro deve impedir dois quartos com o mesmo identificador operacional visível, ou fornecer uma diferenciação clara.",
+      "obtained": "Já existe o quarto 102. Ao criar outro 102 do tipo Family, a lista passa a mostrar duas linhas 102, ambas com preço 300.",
+      "why": "A duplicidade torna ambígua a identificação do quarto na lista administrativa.",
+      "limit": "Unicidade é um critério de integridade adotado nesta revisão; o case não especifica cadastro de quartos. Não foram inspecionados IDs internos nem persistência após recarga.",
+      "steps": [
+        "Na lista administrativa, identificar o quarto 102 já existente.",
+        "Preencher um novo quarto 102, Family, preço 300, com as comodidades mostradas.",
+        "Acionar Create e conferir as duas linhas com o mesmo número."
+      ],
+      "events": [
+        [
+          0,
+          3.5,
+          "Quarto 102 já existe; outro cadastro com número 102 está preenchido."
+        ],
+        [
+          3.6,
+          5.2,
+          "Create é acionado e uma nova linha aparece."
+        ],
+        [
+          5.3,
+          12.3,
+          "A lista exibe dois quartos 102 simultaneamente."
+        ]
+      ],
+      "posterTime": 6,
+      "severity": "Média",
+      "rule": "Integridade cadastral: unicidade do identificador operacional. Critério de revisão fora dos CA explícitos do case.",
+      "video": "assets/videos/ui-006.mp4",
+      "poster": "assets/videos/ui-006.jpg",
+      "captions": "assets/videos/ui-006.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.30.46.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1VnCP17R_3t--v7uSI34098F4tA91VpWP/view?usp=drivesdk",
+      "duration": 12.4,
+      "originalSha256": "a02e9745f7fd480e38a0f32ddf34ccc0b08edd5e1a8a21460533bdb7450b8cc5",
+      "publishedSha256": "0bc6b2dc65b245b7c7d57f1d17a969b58bda8bcdb7478368b9e0862858f8d3d5",
+      "bytes": 157492,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-007",
+      "sourceId": "1a9EkqrvMZuLBmUEvYrsKBI6YvY5XMVbr",
+      "title": "Exclusão de quarto remove uma linha",
+      "status": "controle",
+      "area": "Administração de quartos",
+      "expected": "Ao excluir uma linha, ela deve desaparecer da lista exibida.",
+      "obtained": "A gravação começa com 101 e dois quartos 102. Ao acionar a exclusão, uma das linhas 102 é removida; ao final restam 101 e 102.",
+      "why": "O comportamento visível atende à remoção da linha. Não há evidência de falha de exclusão neste vídeo.",
+      "limit": "É exclusão de quarto pela UI, não DELETE /booking da API anterior. Permanência da remoção após recarga e resposta HTTP não foram verificadas.",
+      "steps": [
+        "Identificar as duas linhas do quarto 102.",
+        "Acionar o ícone de exclusão da linha selecionada.",
+        "Conferir que uma linha desaparece."
+      ],
+      "events": [
+        [
+          0,
+          0.8,
+          "A lista contém o quarto 101 e duas linhas 102."
+        ],
+        [
+          0.9,
+          3.2,
+          "O ícone de exclusão é acionado."
+        ],
+        [
+          3.3,
+          4.35,
+          "Ao final restam o quarto 101 e uma linha 102."
+        ]
+      ],
+      "posterTime": 3.8,
+      "severity": "Não se aplica",
+      "rule": "Controle visual de exclusão de quarto; não é o UC04 de exclusão de reservas.",
+      "video": "assets/videos/ui-007.mp4",
+      "poster": "assets/videos/ui-007.jpg",
+      "captions": "assets/videos/ui-007.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.31.42.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1a9EkqrvMZuLBmUEvYrsKBI6YvY5XMVbr/view?usp=drivesdk",
+      "duration": 4.4,
+      "originalSha256": "88c456827fcd6dcd7102e00fd5dab88cf3d641adeafa3c0b117bcbf8df38f81b",
+      "publishedSha256": "542c45b35ea4f4f765e1f30beaff088a90f889450d3f0fc20b3d7c4410260213",
+      "bytes": 51419,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-008",
+      "sourceId": "1I9czsOfO6cynsgT2b5de52vAjGRHXmtn",
+      "title": "Reserva retorna Failed to create booking",
+      "status": "inconclusivo",
+      "area": "Agenda administrativa",
+      "expected": "Uma reserva válida deve ser criada; dados recusados devem receber uma explicação que permita corrigir o problema.",
+      "obtained": "No calendário administrativo, são preenchidos nome, sobrenome, quarto 101 e pagamento. Ao acionar Book, aparece Failed to create booking.",
+      "why": "A mensagem de falha é demonstrada. O motivo da recusa e a validade integral dos dados não estão estabelecidos.",
+      "limit": "O intervalo exibido é 16 a 18/10/2026, anterior à data sugerida pelo arquivo. Pode haver recusa por regra de datas. Não se pode concluir que um cadastro válido falhou.",
+      "steps": [
+        "Selecionar um intervalo no calendário administrativo.",
+        "Preencher os dados mostrados, escolher quarto 101 e pagamento true.",
+        "Acionar Book e registrar a mensagem exibida."
+      ],
+      "events": [
+        [
+          0,
+          4.2,
+          "Seleção no calendário abre o formulário administrativo."
+        ],
+        [
+          4.3,
+          10.6,
+          "Preenchimento de nome, sobrenome, quarto e pagamento."
+        ],
+        [
+          10.7,
+          14.1,
+          "Book resulta na mensagem Failed to create booking."
+        ],
+        [
+          14.2,
+          16.9,
+          "O formulário é cancelado e a agenda volta a aparecer."
+        ]
+      ],
+      "posterTime": 12.3,
+      "severity": "A avaliar",
+      "rule": "UC02 / CA1 e CA3 como contexto; validade do cenário positivo não comprovada.",
+      "video": "assets/videos/ui-008.mp4",
+      "poster": "assets/videos/ui-008.jpg",
+      "captions": "assets/videos/ui-008.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.40.50.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1I9czsOfO6cynsgT2b5de52vAjGRHXmtn/view?usp=drivesdk",
+      "duration": 16.97,
+      "originalSha256": "1555cffcacff7e3f5a8955f8755533b344c9f1f287c12ca763d13ad10193d41d",
+      "publishedSha256": "f4311f7120265abf3cb5ecd68b7b7577f1eb02bf26a35d3b723a401de3823b1c",
+      "bytes": 213271,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-009",
+      "sourceId": "19A_xzCst6fg59uzUJJU-nn_6lWSwWDgC",
+      "title": "Identificação do quarto aceita letras",
+      "status": "inconclusivo",
+      "area": "Edição de quarto",
+      "expected": "Se Room # for definido como numérico, a atualização deve recusar texto e orientar a correção.",
+      "obtained": "O identificador exibido como 102 é substituído por letras. Após Update, o texto aparece no título do detalhe e na listagem administrativa.",
+      "why": "A aceitação de texto é comprovada. A classificação como defeito depende de confirmar se Room # deve aceitar somente números ou códigos alfanuméricos.",
+      "limit": "O case não define o formato do número de quarto. UC02/CA4 trata validação de tipos no fluxo de reserva; não foi imposto como contrato deste cadastro.",
+      "steps": [
+        "Abrir o quarto 102 e acionar Edit.",
+        "Substituir Room por uma sequência de letras.",
+        "Acionar Update e conferir o detalhe e a lista."
+      ],
+      "events": [
+        [
+          0,
+          3.2,
+          "Detalhe do quarto 102 e abertura da edição."
+        ],
+        [
+          3.3,
+          8.9,
+          "Room é trocado por letras e Update é acionado."
+        ],
+        [
+          9,
+          13,
+          "O texto aparece no título do quarto."
+        ],
+        [
+          16.8,
+          19.1,
+          "A lista também mostra a identificação textual."
+        ]
+      ],
+      "posterTime": 10,
+      "severity": "A avaliar",
+      "rule": "Formato do identificador de quarto: requisito a confirmar com o produto.",
+      "video": "assets/videos/ui-009.mp4",
+      "poster": "assets/videos/ui-009.jpg",
+      "captions": "assets/videos/ui-009.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.45.16.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/19A_xzCst6fg59uzUJJU-nn_6lWSwWDgC/view?usp=drivesdk",
+      "duration": 19.2,
+      "originalSha256": "d61ce2d22dfdf0129c71118a9fd76b86472183950b35b0df9688e3aaacdeac44",
+      "publishedSha256": "173759eceeca7ee0f8ed4e3b2faaa238e6d750c99bcca90ac62f55a76cb7cf44",
+      "bytes": 331016,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    },
+    {
+      "id": "UI-010",
+      "sourceId": "1DAG27N5kweOr5N8S6exZ8FbsZzbLU47R",
+      "title": "Interrupção durante edição de reserva",
+      "status": "inconclusivo",
+      "area": "Edição administrativa",
+      "expected": "A edição deve manter a aplicação utilizável e informar claramente eventual necessidade de autenticação.",
+      "obtained": "Após entrar na edição da reserva, aparece a tela This page could not load. Ao recarregar, é exibido o login administrativo.",
+      "why": "A interrupção é visível; não há prova suficiente para atribuí-la ao salvamento da reserva ou a uma falha de autenticação.",
+      "limit": "Não estão disponíveis logs de rede, motivo do erro de página, validade da sessão ou confirmação de salvamento. Não é bug confirmado de PUT ou de login.",
+      "steps": [
+        "No quarto 102, abrir a edição da reserva existente.",
+        "Observar a edição das datas e os controles da linha.",
+        "Registrar o erro de carregamento e a tela exibida após recarga."
+      ],
+      "events": [
+        [
+          0,
+          2.3,
+          "Reserva existente e entrada no modo de edição."
+        ],
+        [
+          2.4,
+          4.5,
+          "Campos de data ficam editáveis."
+        ],
+        [
+          4.6,
+          6.2,
+          "É exibido This page could not load."
+        ],
+        [
+          6.3,
+          9.1,
+          "Após recarga, aparece o formulário de login."
+        ]
+      ],
+      "posterTime": 5.2,
+      "severity": "A avaliar",
+      "rule": "UC01 e UC04 como contexto; mecanismo e causa da interrupção não determinados.",
+      "video": "assets/videos/ui-010.mp4",
+      "poster": "assets/videos/ui-010.jpg",
+      "captions": "assets/videos/ui-010.vtt",
+      "sourceName": "WhatsApp Video 2026-10-21 at 20.49.09.mp4",
+      "sourceUrl": "https://drive.google.com/file/d/1DAG27N5kweOr5N8S6exZ8FbsZzbLU47R/view?usp=drivesdk",
+      "duration": 9.17,
+      "originalSha256": "665c584d48916f1ad7dcea1500bf805aa4f2954668fa9cf553654bc75bf6e416",
+      "publishedSha256": "6b09a41e32edb48a7c65a95805858eb0832e6b3f87bc2064b7cfdd84b5e94345",
+      "bytes": 128036,
+      "edit": "Gravação integral, sem cortes, sem alteração de velocidade e sem sobreposição. Compressão H.264/AAC, resolução original, carregamento progressivo; legendas opcionais externas."
+    }
+  ]
+}

@@ -53,3 +53,11 @@ O retorno de um `bookingid` no POST não comprova persistência. Os controles de
 A primeira tela apresenta apenas a logo animada Bug Hunters. Clique na logo ou pressione seta direita/espaço para continuar. O conteúdo da apresentação começa no segundo slide.
 
 Cada bug mostra uma evidência diretamente no slide. O botão Ver variações abre esperado, obtido e análise das variantes; ao escolher uma evidência, o print e os textos do mesmo slide são atualizados. A navegação permanece com 12 slides.
+
+## Evidências de utilização em vídeo
+
+Abra `manual.html` para revisar as 10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. Há player, capítulos clicáveis, legendas descritivas opcionais e filtros. A abertura e a conclusão da apresentação da API levam a essa seção.
+
+Os vídeos são integrais e foram comprimidos com FFmpeg em H.264/AAC, na resolução original, sem cortes nem alteração de velocidade. Os originais permanecem no Drive. Os arquivos `EVIDENCIAS-UTILIZACAO.md` e `manual-data.json` registram passos, cenário, resultado, critério, limites, tempos e hashes SHA-256. As classificações são independentes dos 7 bugs da API.
+
+Para `manual.html`, use um servidor HTTP local com suporte a byte ranges (necessário para buscar trechos dos vídeos) ou GitHub Pages (o navegador precisa carregar o JSON); o arquivo da apresentação principal continua independente de build.

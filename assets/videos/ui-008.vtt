@@ -1,0 +1,13 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.200
+Seleção no calendário abre o formulário administrativo.
+
+00:00:04.300 --> 00:00:10.600
+Preenchimento de nome, sobrenome, quarto e pagamento.
+
+00:00:10.700 --> 00:00:14.100
+Book resulta na mensagem Failed to create booking.
+
+00:00:14.200 --> 00:00:16.900
+O formulário é cancelado e a agenda volta a aparecer.
