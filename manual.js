@@ -10,6 +10,7 @@
   index.addEventListener('click',e=>{if(e.target===index){const r=index.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)index.close();}});
   const labels={bug:'Bug observado',inconclusivo:'Em análise',controle:'Controle sem falha visual'};
   let records=[],visible=[],filter='all',current=null;
+  const emitShared=()=>window.dispatchEvent(new CustomEvent('presentation-change',{detail:{mode:'front',frontId:current?.id||'UI-001',frontFilter:filter}}));
   const time=value=>`${String(Math.floor(value/60)).padStart(2,'0')}:${String(Math.floor(value%60)).padStart(2,'0')}`;
   function library(){
     const container=$('evidence-list');container.replaceChildren();
@@ -44,7 +45,7 @@
     const i=visible.findIndex(x=>x.id===c.id);$('counter').textContent=`${i+1} / ${visible.length}`;
     $('front-progress').style.width=((i+1)/visible.length*100)+'%';const progress=document.querySelector('.nav-progress');progress.setAttribute('aria-valuemax',visible.length);progress.setAttribute('aria-valuenow',i+1);
     $('previous').disabled=i<=0;$('next').disabled=i>=visible.length-1;
-    library();if(updateHash)history.replaceState(null,'','#'+c.id.toLowerCase());
+    emitShared();library();if(updateHash)history.replaceState(null,'','#'+c.id.toLowerCase());
     $('announcement').textContent=c.id+': '+c.title+'. '+labels[c.status];
     const workspace=document.querySelector('.workspace');workspace.classList.remove('is-switching');void workspace.offsetWidth;workspace.classList.add('is-switching');
   }
@@ -59,5 +60,10 @@
   addEventListener('hashchange',()=>{const c=records.find(c=>'#'+c.id.toLowerCase()===location.hash);if(c){if(filter!=='all'&&c.status!==filter)applyFilter('all');select(c.id,false);}});
   document.addEventListener('keydown',e=>{if(index.open||e.ctrlKey||e.metaKey||e.altKey||e.target.closest('video,input,textarea,select,button,summary,a'))return;if(e.key.toLowerCase()==='i'){e.preventDefault();index.showModal();}if(e.key==='ArrowRight'){e.preventDefault();move(1);}if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();});
+  window.PresentationBridge={mode:'front',ready:()=>!!records.length,getState:()=>({mode:'front',frontId:current?.id||'UI-001',frontFilter:filter}),previous:()=>move(-1),next:()=>move(1),applyState(state){
+    const target=records.find(c=>c.id===state.frontId);if(!target)return;let nextFilter=['all','bug','inconclusivo','controle'].includes(state.frontFilter)?state.frontFilter:'all';if(nextFilter!=='all'&&target.status!==nextFilter)nextFilter='all';
+    if(current?.id===target.id&&filter===nextFilter)return;
+    if(index.open)index.close();filter=nextFilter;visible=records.filter(c=>filter==='all'||c.status===filter);document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));select(target.id);
+  }};
   fetch('manual-data.json').then(r=>{if(!r.ok)throw Error('Falha ao carregar as evidências.');return r.json();}).then(data=>{records=data.records;visible=records;select(location.hash.slice(1).toUpperCase()||records[0].id,false);}).catch(()=>{$('case-title').textContent='Não foi possível carregar as evidências. Atualize a página ou abra a documentação completa.';});
 })();
