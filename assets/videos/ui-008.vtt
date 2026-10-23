@@ -7,7 +7,7 @@ Seleção no calendário abre o formulário administrativo.
 Preenchimento de nome, sobrenome, quarto e pagamento.
 
 00:00:10.700 --> 00:00:14.100
-Book resulta na mensagem Failed to create booking.
+Book resulta no aviso Failed to create booking.
 
 00:00:14.200 --> 00:00:16.900
-O formulário é cancelado e a agenda volta a aparecer.
+Após cancelar o formulário, a reserva aparece no calendário apesar do aviso.

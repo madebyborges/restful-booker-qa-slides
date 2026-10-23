@@ -8,7 +8,7 @@ Inspeção visual por quadros, sequência das ações e comparação antes/depoi
 
 ## Resultado da revisão
 
-10 gravações: 3 bugs observados, 6 ocorrências em análise e 1 controle sem falha visual. Navegação usa critérios de usabilidade explicitamente adotados; o cenário de cliques repetidos segue o esclarecimento do executor. Esses critérios não foram atribuídos ao PDF.
+10 gravações: 4 bugs observados, 5 ocorrências em análise e 1 controle sem falha visual. Navegação usa critérios de usabilidade explicitamente adotados; o cenário de cliques repetidos segue o esclarecimento do executor. Esses critérios não foram atribuídos ao PDF.
 
 Todos os vídeos são curtos (4 a 26 segundos) e foram mantidos integrais para preservar ação e resultado. Os originais permanecem no Drive. Legendas são descrições editoriais, não transcrição de fala.
 
@@ -304,32 +304,35 @@ Cenário: Exclusão de quarto remove uma linha
 | 0.9–3.2s | O ícone de exclusão é acionado. |
 | 3.3–4.3s | Ao final restam o quarto 101 e uma linha 102. |
 
-## UI-008 · Reserva retorna Failed to create booking
+## UI-008 · Reserva aparece após aviso de falha
 
-**Classificação:** Em análise · **Criticidade sugerida:** A avaliar · **Área:** Agenda administrativa
+**Classificação:** Bug observado (vídeo e esclarecimento do executor) · **Criticidade sugerida:** Alta · **Área:** Agenda administrativa
 
-**Regra:** UC02 / CA1 e CA3 como contexto; validade do cenário positivo não comprovada.
+**Regra:** UC02 e UC03 como contexto: coerência do resultado da criação e acesso às informações da reserva. O defeito não é apenas a recusa ao tentar criar.
 
 ### Cenário e execução
 
-1. Selecionar um intervalo no calendário administrativo.
-2. Preencher os dados mostrados, escolher quarto 101 e pagamento true.
-3. Acionar Book e registrar a mensagem exibida.
+1. Selecionar um intervalo no calendário e preencher os dados da reserva, incluindo quarto 101 e pagamento.
+2. Acionar Book e observar o aviso Failed to create booking.
+3. Cancelar o formulário e verificar que a reserva aparece no calendário.
+4. Clicar na reserva exibida e verificar que suas informações não são abertas, conforme relato do executor.
 
 ```gherkin
-Cenário: Reserva retorna Failed to create booking
-  Dado que a interface está na área de agenda administrativa
-  Quando executo a ação descrita: Preencher os dados mostrados, escolher quarto 101 e pagamento true.
-  Então observo na gravação: No calendário administrativo, são preenchidos nome, sobrenome, quarto 101 e pagamento. Ao acionar Book, aparece Failed to create booking.
+Cenário: Reserva aparece após aviso de falha
+  Dado que preenchi os dados de uma reserva no calendário administrativo
+  Quando aciono Book e recebo o aviso Failed to create booking
+  E cancelo o formulário
+  Então a reserva aparece no calendário apesar do aviso
+  E, conforme relato do executor, clicar na reserva não abre suas informações
 ```
 
-**Esperado:** Uma reserva válida deve ser criada; dados recusados devem receber uma explicação que permita corrigir o problema.
+**Esperado:** Se a criação for recusada, a reserva não deve aparecer como criada. Uma reserva exibida no calendário deve permitir consultar suas informações.
 
-**Obtido:** No calendário administrativo, são preenchidos nome, sobrenome, quarto 101 e pagamento. Ao acionar Book, aparece Failed to create booking.
+**Obtido:** Ao acionar Book, aparece Failed to create booking. Após cancelar o formulário, a reserva aparece no calendário. Segundo o executor, clicar nela não abre suas informações.
 
-**Por que / análise:** A mensagem de falha é demonstrada. O motivo da recusa e a validade integral dos dados não estão estabelecidos.
+**Por que / análise:** O aviso de falha contradiz o evento exibido no calendário. Sem conseguir abrir os detalhes, o usuário não consegue confirmar o resultado da operação e pode tentar criar a reserva novamente.
 
-**Limite e próximo reteste:** O intervalo exibido é 16 a 18/10/2026, anterior à data sugerida pelo arquivo. Pode haver recusa por regra de datas. Não se pode concluir que um cadastro válido falhou.
+**Limite e próximo reteste:** A gravação mostra o aviso de falha e a reserva no calendário após cancelar. A tentativa sem resposta ao clicar na reserva foi esclarecida pelo executor. Sem consultas, requisições ou logs, não se confirma a persistência no servidor nem a causa técnica.
 
 ### Rastreabilidade
 
@@ -343,8 +346,8 @@ Cenário: Reserva retorna Failed to create booking
 |---|---|
 | 0.0–4.2s | Seleção no calendário abre o formulário administrativo. |
 | 4.3–10.6s | Preenchimento de nome, sobrenome, quarto e pagamento. |
-| 10.7–14.1s | Book resulta na mensagem Failed to create booking. |
-| 14.2–16.9s | O formulário é cancelado e a agenda volta a aparecer. |
+| 10.7–14.1s | Book resulta no aviso Failed to create booking. |
+| 14.2–16.9s | Após cancelar o formulário, a reserva aparece no calendário apesar do aviso. |
 
 ## UI-009 · Identificação do quarto aceita letras
 

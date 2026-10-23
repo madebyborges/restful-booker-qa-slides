@@ -328,17 +328,18 @@
     {
       "id": "UI-008",
       "sourceId": "1I9czsOfO6cynsgT2b5de52vAjGRHXmtn",
-      "title": "Reserva retorna Failed to create booking",
-      "status": "inconclusivo",
+      "title": "Reserva aparece após aviso de falha",
+      "status": "bug",
       "area": "Agenda administrativa",
-      "expected": "Uma reserva válida deve ser criada; dados recusados devem receber uma explicação que permita corrigir o problema.",
-      "obtained": "No calendário administrativo, são preenchidos nome, sobrenome, quarto 101 e pagamento. Ao acionar Book, aparece Failed to create booking.",
-      "why": "A mensagem de falha é demonstrada. O motivo da recusa e a validade integral dos dados não estão estabelecidos.",
-      "limit": "O intervalo exibido é 16 a 18/10/2026, anterior à data sugerida pelo arquivo. Pode haver recusa por regra de datas. Não se pode concluir que um cadastro válido falhou.",
+      "expected": "Se a criação for recusada, a reserva não deve aparecer como criada. Uma reserva exibida no calendário deve permitir consultar suas informações.",
+      "obtained": "Ao acionar Book, aparece Failed to create booking. Após cancelar o formulário, a reserva aparece no calendário. Segundo o executor, clicar nela não abre suas informações.",
+      "why": "O aviso de falha contradiz o evento exibido no calendário. Sem conseguir abrir os detalhes, o usuário não consegue confirmar o resultado da operação e pode tentar criar a reserva novamente.",
+      "limit": "A gravação mostra o aviso de falha e a reserva no calendário após cancelar. A tentativa sem resposta ao clicar na reserva foi esclarecida pelo executor. Sem consultas, requisições ou logs, não se confirma a persistência no servidor nem a causa técnica.",
       "steps": [
-        "Selecionar um intervalo no calendário administrativo.",
-        "Preencher os dados mostrados, escolher quarto 101 e pagamento true.",
-        "Acionar Book e registrar a mensagem exibida."
+        "Selecionar um intervalo no calendário e preencher os dados da reserva, incluindo quarto 101 e pagamento.",
+        "Acionar Book e observar o aviso Failed to create booking.",
+        "Cancelar o formulário e verificar que a reserva aparece no calendário.",
+        "Clicar na reserva exibida e verificar que suas informações não são abertas, conforme relato do executor."
       ],
       "events": [
         [
@@ -354,17 +355,17 @@
         [
           10.7,
           14.1,
-          "Book resulta na mensagem Failed to create booking."
+          "Book resulta no aviso Failed to create booking."
         ],
         [
           14.2,
           16.9,
-          "O formulário é cancelado e a agenda volta a aparecer."
+          "Após cancelar o formulário, a reserva aparece no calendário apesar do aviso."
         ]
       ],
       "posterTime": 12.3,
-      "severity": "A avaliar",
-      "rule": "UC02 / CA1 e CA3 como contexto; validade do cenário positivo não comprovada.",
+      "severity": "Alta",
+      "rule": "UC02 e UC03 como contexto: coerência do resultado da criação e acesso às informações da reserva. O defeito não é apenas a recusa ao tentar criar.",
       "video": "assets/videos/ui-008.mp4",
       "poster": "assets/videos/ui-008.jpg",
       "captions": "assets/videos/ui-008.vtt",
