@@ -63,3 +63,5 @@ Os vídeos são integrais e foram comprimidos com FFmpeg em H.264/AAC, na resolu
 Para `manual.html`, use um servidor HTTP local com suporte a byte ranges (necessário para buscar trechos dos vídeos) ou GitHub Pages (o navegador precisa carregar o JSON); o arquivo da apresentação principal continua independente de build.
 
 Ao abrir ou trocar de evidência, o vídeo selecionado carrega e começa automaticamente, sem som. O áudio pode ser ativado nos controles do player. Restrições do navegador ainda podem exigir um clique em reproduzir.
+
+O vídeo selecionado fica em loop: ao chegar ao fim, reinicia automaticamente enquanto a evidência estiver aberta. A troca de evidência interrompe o anterior e inicia o novo vídeo.

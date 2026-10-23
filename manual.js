@@ -23,7 +23,7 @@
   }
   function select(id,updateHash=true){
     const c=records.find(c=>c.id===id)||visible[0];if(!c)return;
-    current=c;video.pause();video.muted=true;video.defaultMuted=true;video.autoplay=true;video.poster=c.poster;
+    current=c;video.pause();video.muted=true;video.defaultMuted=true;video.autoplay=true;video.loop=true;video.poster=c.poster;
     const source=document.createElement('source');source.src=c.video;source.type='video/mp4';
     const track=document.createElement('track');track.kind='captions';track.label='Português · descrição da evidência';track.srclang='pt-BR';track.src=c.captions;
     video.replaceChildren(source,track);video.load();
